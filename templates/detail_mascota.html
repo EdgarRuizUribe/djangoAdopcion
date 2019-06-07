@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block content%}
+<section class="col-12 col-md-8 mx-auto">
+    {% if object %}
+        <div class="alert alert-light w-md-75 mx-auto mt-5" role="alert">
+            <p style="font-size:22px;" class="font-weight-lighter">Nombre: {{object.name|upper}}</p>
+            <p style="font-size:22px;" class="font-weight-lighter">Sexo: {{object.get_sex_display}}</p>
+            <p style="font-size:22px;" class="font-weight-lighter">Edad: {{object.aproximated_ege}} años</p>
+            <div style="font-size:15px; font-style:italic;" class="d-flex justyfy-content-between font-weight-lighter">
+                <p style="margin: 0;">Rescatado el: {{object.rescue_date}}</p>
+            </div>
+            <hr>
+            <div style="display: flex; justify-content: space-between;">
+                <div>
+                 
+                    {% comment %} <i><a style="font-size: 10px;" class="btn btn-light" href="{% url 'post_edit' pk=post.pk %}" role="button">EDITAR</a></i> {% endcomment %}
+                    <i><a style="font-size: 10px;" class="btn btn-light" href="{% url 'mascota_eliminar' pk=object.pk  %}" role="button">ELIMINAR</a></i>
+                    <i><a style="font-size: 10px;" class="btn btn-light" href="{% url 'mascota_actualizar' pk=object.pk  %}" role="button">Editar</a></i>
+                   
+                </div>
+                {% if object.persons%}
+                    <p>Adoptado por: {{ object.persons|upper }}</p>
+                    {% else %}
+                    <p>Disponible para Adopcion</p>
+                {% endif %}
+            </div>
+        </div>
+    {% else %}
+    <h1>No se encontro mascota</h1>
+    {% endif %}
+</section>
+{% endblock %}

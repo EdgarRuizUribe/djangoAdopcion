@@ -1,0 +1,43 @@
+{% extends 'base.html'%}
+
+{% block content %}
+    <section class="table-responsive">
+        {% if object_list %}
+            <table class="table table-hover">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Nombre</td>
+                        <th scope="col">Sexo</td>
+                        <th scope="col">Edad</td>
+                        <th scope="col">Fecha de Rescate</td>
+                        <th scope="col">Adoptado</td>
+                        <th scope="col">Accion</td>
+                    </tr>
+                </thead>
+                {% for mascota in object_list%}
+                <tr>
+                    <td>{{mascota.name}}</td>
+                    <td>{{mascota.get_sex_display}}</td>
+                    <td>{{mascota.aproximated_ege}}</td>
+                    <td>{{mascota.rescue_date}}</td>
+                    <td>
+                        {% if mascota.persons %}
+                            <span><i class="fa fa-check icon-adopted"></i></span>
+                        {% else %}
+                            <span><i class="fa fa-shopping-basket icon-no-adopted"></i></span>
+                        {% endif %}
+                    </td>
+                    <td>
+                        <a href="{% url 'mascota_detalle' pk=mascota.pk %}" type="button" class="btn btn-info">Ver mas</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+        {% else %}
+            <h1>NO SE ENCONTRATON REGISTROS :(</h1>
+        {% endif %}
+    </section>
+    <section class="d-flex justify-content-end">
+            <a href="{% url 'mascota_crear' %}"><i class="fa fa-plus-circle"></i></a>
+    </section>
+{% endblock %}

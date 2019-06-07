@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="col-12 col-md-6 mx-auto mt-5">
+    <h1>Quieres ELIMINAR a {{object}}?</h1>
+    <form method="Post">
+        {% csrf_token %}
+        <input type="submit" value="Si. Eliminat" class="btn btn-danger">
+        <a href="{% url 'mascotas_listar' %}" class="btn btn-info" autofocus>Cancelar</a>
+    </form>
+</section>
+{% endblock %}
