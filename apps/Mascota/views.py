@@ -34,9 +34,14 @@ class MascotaCreate(CreateView):
     template_name = 'crear_mascota.html'
     success_url= reverse_lazy('mascotas_listar')
 
+# Para el proceso de eliminacion.
+# DeleteView utiliza el atributo template_name cuando la peticion es un get. esto para confirmar en un html la eliminacion.
 
+# se lo que se quiere es no utilizar un html de confirmacion, se tiene que resivir un POST y solo dirijir al success_url.
+
+# para enviar un post desde un form html se utiliza los atributos actiom="nombre de la view para el delete" y method="POST"
 class MascotaDelete(DeleteView):
     model = Pet
-    template_name = 'delete_mascota.html'
+    # template_name = 'delete_mascota.html'
     success_url= reverse_lazy('mascotas_listar')
 

@@ -1,0 +1,54 @@
+{% extends 'base.html'%}
+
+{% block content %}
+    <section class="table-responsive">
+        {% if object_list %}
+            <span style="font-size:22px; font-style:italic;" class="title d-flex justify-content-center font-weight-lighter mx-auto">
+                <p> <strong>Personas:</strong></p>
+            </span>
+            <table class="table table-hover">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Nombre</td>
+                        <th scope="col">Apellido</td>
+                        <th scope="col">Email</td>
+                        <th scope="col">Numero Telefonico</td>
+                        <th scope="col">Acciones</td>
+                    </tr>
+                </thead>
+                {% for persona in object_list%}
+                <tr>
+                    <td class="vertical-middle">
+                        {{persona.name}}
+                    </td>
+                    <td class="vertical-middle">
+                        {{persona.last_name}}
+                    </td>
+                    <td class="vertical-middle">
+                        {{persona.email}}
+                    </td>
+                    {% if persona.telephone_set.all %}
+                        <td class="vertical-middle">
+                            {% for telefono in persona.telephone_set.all %}
+                                <p>{{telefono.number}}</p>
+                            {% endfor %}
+                        </td>
+                    {% else %}
+                        <td>
+                            <p>---</p>
+                        </td>
+                    {% endif %}
+                    <td class="vertical-middle">
+                        <a href="{% url 'persona_detalle' pk=persona.pk %}" type="button" class="btn btn-info">Ver mas</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+        {% else %}
+            <h1>NO SE ENCONTRARON REGISTROS :(</h1>
+        {% endif %}
+    </section>
+    <section class="d-flex justify-content-end">
+            {% comment %} <a href="{% url 'persona_crear' %}"><i class="fa fa-plus-circle"></i></a> {% endcomment %}
+    </section>
+{% endblock %}

@@ -16,6 +16,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+from apps.adopcion.views import PersonList, PersonDetail, PersonaDelete, PersonaUpdate
+
 urlpatterns = [
-    # path('list_mascotas/', include('apps.adopcion.urls')),
+    path('', PersonList.as_view(), name='personas_listar'),
+    path('detalle/<int:pk>/', PersonDetail.as_view(), name='persona_detalle'),
+    path('eliminar/<int:pk>/', PersonaDelete.as_view(), name='persona_eliminar'),
+    path('actualizar/<int:pk>/', PersonaUpdate.as_view(), name='persona_actualizar')
 ]

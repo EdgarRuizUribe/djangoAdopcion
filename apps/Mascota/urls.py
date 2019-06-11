@@ -19,7 +19,7 @@ from django.urls import path, include
 from apps.Mascota.views import MascotasList, MascotaDetail, MascotaDelete, MascotaUpdate, MascotaCreate
 
 urlpatterns = [
-    path('listar/', MascotasList.as_view(), name='mascotas_listar'),
+    path('', MascotasList.as_view(), name='mascotas_listar'),
     path('detalle/<int:pk>/', MascotaDetail.as_view(), name='mascota_detalle'),
     path('eliminar/<int:pk>/', MascotaDelete.as_view(), name='mascota_eliminar'),
     path('actializar/<int:pk>/', MascotaUpdate.as_view(), name='mascota_actualizar'),

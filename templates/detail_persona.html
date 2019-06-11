@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="col-12 col-md-8 mx-auto">
+    {% if object %}
+        <section class="alert alert-light w-md-75 mx-auto mt-5" role="alert">
+            <span style="font-size:22px; font-style:italic;" class="d-flex justify-content-center font-weight-lighter mx-auto">
+                <p> <strong>Datos Persona:</strong></p>
+            </span>
+            <p style="font-size:18px;" class="font-weight-lighter">Nombre: {{object.name|upper}} {{object.last_name|upper}}</p>
+            <p style="font-size:18px;" class="font-weight-lighter">Edad: {{object.age}} años</p>
+            <p style="font-size:18px;" class="font-weight-lighter">Email: {{object.email}}</p>
+            <span class="d-flex">
+                <p style="font-size:18px;" class="font-weight-lighter">Telefono:</p>
+                <span class="">
+                    {% if object.telephone_set.all %}
+                        {% for telefono in object.telephone_set.all %}
+                            <p style="font-size:18px; font-style:italic; margin-left: 1rem;" class="font-weight-lighter">
+                                {{ telefono.number }} {{telefono.get_sort_display}}
+                            </p>
+                        {% endfor %}
+                    {% else %}
+                        <p style="font-size:18px; font-style:italic; margin-left: 1rem;" class="font-weight-lighter">No tiene numeros Telefonico(s) registrado(s)</p>
+                    {% endif %}
+                </span>
+            </span>
+            <section style="font-size:22px; font-style:italic;" class="d-flex justify-content-center font-weight-lighter mx-auto">
+                <p><strong>Mascotas Adoptadas:</strong></p>
+            </section>
+            <section style="font-size:18px;" class="font-weight-lighter">
+                    {% if object.pet_set.all %}
+                        {% for mascota in object.pet_set.all %}
+                            {{mascota|upper}}
+                        {% endfor %}
+                    {% else %}
+                        <p>{{object.name}}. Aun no ha Adoptado :(</p>
+                    {% endif %}
+            </section>
+            <hr>
+            <section style="display: flex; justify-content: space-between;">
+                <section>
+                 
+                    <i><a style="font-size: 10px;" class="btn btn-light" href="{% url 'persona_actualizar' pk=object.pk  %}" role="button">EDITAR</a></i>
+                    <button type="button" class="btn btn-light" data-toggle="modal" data-target="#exampleModal" style="font-size: 10px;">
+                        ELIMINAR
+                    </button>
+                   
+                </section>
+                <a href="{% url 'mascotas_listar'%}" class="btn btn-primary">Adoptar</a>
+            </section>
+        </section>
+    {% else %}
+    <h1>No se encontro mascota</h1>
+    {% endif %}
+</section>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Eliminar Mascota</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Esta seguro de querer Eliminar a {{object.name|upper}}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        <form action="{% url 'persona_eliminar' pk=object.pk  %}" method="Post">
+        {% csrf_token %}
+            <input type="submit" class="btn btn-danger" value="Eliminar"/>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
