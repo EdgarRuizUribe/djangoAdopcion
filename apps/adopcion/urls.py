@@ -16,11 +16,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
-from apps.adopcion.views import PersonList, PersonDetail, PersonaDelete, PersonaUpdate
+from apps.adopcion.views import PersonList, PersonDetail, PersonDelete, PersonUpdate, PersonCreate
 
 urlpatterns = [
     path('', PersonList.as_view(), name='personas_listar'),
     path('detalle/<int:pk>/', PersonDetail.as_view(), name='persona_detalle'),
-    path('eliminar/<int:pk>/', PersonaDelete.as_view(), name='persona_eliminar'),
-    path('actualizar/<int:pk>/', PersonaUpdate.as_view(), name='persona_actualizar')
+    path('eliminar/<int:pk>/', PersonDelete.as_view(), name='persona_eliminar'),
+    path('nuevo/', PersonCreate.as_view(), name='persona_crear'),
+    path('actualizar/<int:pk>/', PersonUpdate.as_view(), name='persona_actualizar')
 ]

@@ -22,9 +22,9 @@ class PetForm(forms.ModelForm):
         }
 
         widgets = {
-            'name': forms.TextInput(attrs={'class':'form-name'}),
-            'sex': forms.Select(),
-            'aproximated_ege': forms.TextInput(attrs={'class':'form-name'}),
-            'rescue_date': forms.DateInput(attrs={'type': 'date'}),
-            'person': forms.Select(attrs={'class':'form-name'}),
+            'name': forms.TextInput(attrs={'class':'form-name form-control'}),
+            'sex': forms.Select(attrs={'class':'form-sex form-control'}),
+            'aproximated_ege': forms.TextInput(attrs={'class':'form-name form-control'}),
+            'rescue_date': forms.DateInput(attrs={'type': 'date', 'class':'form-control'}),
+            'persons': forms.Select(attrs={'class':'form-name form-control'}),
         }

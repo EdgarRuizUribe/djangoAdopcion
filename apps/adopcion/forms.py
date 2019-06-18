@@ -20,10 +20,10 @@ class PersonForm(forms.ModelForm):
         }
 
         widgets = {
-            'name': forms.TextInput(attrs={'class':'persona-name'}),
-            'last_name': forms.TextInput(attrs={'class':'last-name'}),
-            'age': forms.NumberInput(attrs={'class':'edad'}),
-            'Email': forms.EmailInput(attrs={'class': 'email'}),
+            'name': forms.TextInput(attrs={'class':'persona-name form-control'}),
+            'last_name': forms.TextInput(attrs={'class':'last-name form-control'}),
+            'age': forms.NumberInput(attrs={'class':'edad form-control'}),
+            'email': forms.EmailInput(attrs={'class': 'email form-control'}),
         }
 
 
@@ -42,6 +42,6 @@ class TelephoneForm(forms.ModelForm):
         }
 
         widgets = {
-            'sort':forms.Select(),
-            'number':forms.TextInput(attrs={'class':'numero-telefono'}),
+            'sort':forms.Select(attrs={'class':'type-number form-control'}),
+            'number':forms.TextInput(attrs={'class':'numero-telefono form-control'}),
         }

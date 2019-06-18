@@ -2,15 +2,17 @@
 
 {% block content %}
     <span style="font-size:22px; font-style:italic;" class="d-flex justify-content-center font-weight-lighter mx-auto mt-5">
-        <p> <strong>Registro Mascota:</strong></p>
+        <p> <strong>Registro Persona:</strong></p>
     </span>
     <section class="col-12 col-md-8 mx-auto">
-        <form method='Post'>
+        <form method="Post" class="">
             {% csrf_token %}
-            {{ form.as_p }}
+            {{form2.as_p}}
+            {{form.as_p}}
             <span class="d-flex justify-content-center mb-5">
-                <input type="submit" value="Guardar" class="btn btn-primary"/>
+                <input type="submit" value="Guardar" class="btn btn-primary">
             </span>
         </form>
     </section>
+
 {% endblock %}
