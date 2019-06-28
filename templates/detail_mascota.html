@@ -18,14 +18,14 @@
                  
                     <i><a style="font-size: 10px;" class="btn btn-light" href="{% url 'mascota_actualizar' pk=object.pk  %}" role="button">EDITAR</a></i>
                     <button type="button" class="btn btn-light" data-toggle="modal" data-target="#exampleModal" style="font-size: 10px;">
-                        ELIMINAR
+                      ELIMINAR
                     </button>
                    
                 </section>
                 {% if object.persons%}
                     <p>Adoptado por: {{ object.persons|upper }}</p>
                     {% else %}
-                    <p>Disponible para Adopcion</p>
+                    <p>Disponible para Adoptar</p>
                 {% endif %}
             </section>
         </section>

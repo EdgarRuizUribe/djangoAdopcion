@@ -5,14 +5,29 @@
         <p> <strong>Registro Persona:</strong></p>
     </span>
     <section class="col-12 col-md-8 mx-auto">
-        <form method="Post" class="">
+    
+        <form method="Post">
             {% csrf_token %}
-            {{form2.as_p}}
+
             {{form.as_p}}
+            {{form2.management_form}}
+            {% for tel in form2 %}
+               
+                <p>
+                    {{tel.sort}}
+                </p>
+                
+                <p>
+                    {{tel.number}}
+                </p> 
+            
+            {% endfor %}
+            
+            
+            <button type="button" id="btnNuevoTel" class="btn btn-primary">Agregar Telefono</button>
             <span class="d-flex justify-content-center mb-5">
-                <input type="submit" value="Guardar" class="btn btn-primary">
+                <input type="submit" value="Guardar" class="btn btn-success">
             </span>
         </form>
     </section>
-
 {% endblock %}

@@ -2,18 +2,20 @@
 
 {% block content %}
     <span style="font-size:22px; font-style:italic;" class="d-flex justify-content-center font-weight-lighter mx-auto mt-5">
-        <p> <strong>Editar Persona:</strong></p>
+        <p> <strong>Registro Persona:</strong></p>
     </span>
     <section class="col-12 col-md-8 mx-auto">
-    <form method='Post'>
-        {% csrf_token %}
-        {{ form2.as_p }}
-        {% for tel in form %}
-        {{ tel }}
-        {% endfor %}
-        <span class="d-flex justify-content-center mb-5">
-            <input type='submit' value='Guardar' class="btn btn-primary"/>
-        </span>
-    </form>
+    
+        <form method="Post">
+            {% csrf_token %}
+
+            {{form.as_p}}
+            {{form2.as_p}}            
+            
+            <button type="button" id="btnNuevoTel" class="btn btn-primary">Agregar Telefono</button>
+            <span class="d-flex justify-content-center mb-5">
+                <input type="submit" value="Guardar" class="btn btn-success">
+            </span>
+        </form>
     </section>
 {% endblock %}

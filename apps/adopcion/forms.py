@@ -1,4 +1,5 @@
 from django import forms
+from django.forms.models import inlineformset_factory, formset_factory
 from apps.adopcion.models import Person, Telephone
 
 class PersonForm(forms.ModelForm):
@@ -42,6 +43,8 @@ class TelephoneForm(forms.ModelForm):
         }
 
         widgets = {
-            'sort':forms.Select(attrs={'class':'type-number form-control'}),
-            'number':forms.TextInput(attrs={'class':'numero-telefono form-control'}),
+            'sort':forms.Select(attrs={'class':'type-number form-control', 'hidden':'true'}),
+            'number':forms.TextInput(attrs={'class':'numero-telefono form-control', 'hidden':'true', 'placeholder':'Numero Telefonico'}),
         }
+
+TelephoneFormSet = forms.inlineformset_factory(Person, Telephone, form=TelephoneForm, extra=3)

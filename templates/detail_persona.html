@@ -15,7 +15,7 @@
                     {% if object.telephone_set.all %}
                         {% for telefono in object.telephone_set.all %}
                             <p style="font-size:18px; font-style:italic; margin-left: 1rem;" class="font-weight-lighter">
-                                {{ telefono.number }} {{telefono.get_sort_display}}
+                                {{ telefono.number }} {{telefono.get_sort_display|lower}}
                             </p>
                         {% endfor %}
                     {% else %}
