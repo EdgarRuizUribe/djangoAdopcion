@@ -1,26 +1,41 @@
 (function(){
+
+    let count = 0
+
     btnNewTel = document.querySelector("#btnNuevoTel")
+    
+    for(let i = 0; i < 3; i++){
 
-        let count = 0
+        if(document.querySelector("#id_telephone_set-"+i+"-number").value != ""){
 
-        btnNewTel.addEventListener('click',() => {
-            console.log("primero", count)
-            if (count < 3){
-                telSort = document.querySelector("#id_telephone_set-"+count+"-sort")
-                telNumber = document.querySelector("#id_telephone_set-"+count+"-number")
-                console.log(count)
-                console.log(telNumber.value,"<------------",typeof telNumber)
-                telSort.hidden = false
-                telNumber.hidden = false
-                if(telNumber.value == ""){
-                    console.log("hola crayola")
-                }
-            }
-            if (count === 2){
-                console.log("entro 4")
-                btnNewTel.setAttribute('disabled', 'true')
-            }
+            telSort = document.querySelector("#id_telephone_set-"+i+"-sort")
+            telNumber = document.querySelector("#id_telephone_set-"+i+"-number")
             
+            telSort.hidden = false
+            telNumber.hidden = false
+
+            console.log(count)
             count += 1
-        })
+        }
+        if (count > 2){
+            console.log("btn desactivado")
+            btnNewTel.setAttribute('disabled', 'true')
+        }
+    }
+
+    btnNewTel.addEventListener('click',() => {
+        
+        console.log("primero", count)
+        if (count < 3){
+            telSort = document.querySelector("#id_telephone_set-"+count+"-sort")
+            telNumber = document.querySelector("#id_telephone_set-"+count+"-number")
+            telSort.hidden = false
+            telNumber.hidden = false
+        }
+        if (count >= 2){
+            console.log("btn desactivado")
+            btnNewTel.setAttribute('disabled', 'true')
+        }
+        count += 1
+    })
 })()

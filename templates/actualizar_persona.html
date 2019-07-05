@@ -2,7 +2,7 @@
 
 {% block content %}
     <span style="font-size:22px; font-style:italic;" class="d-flex justify-content-center font-weight-lighter mx-auto mt-5">
-        <p> <strong>Registro Persona:</strong></p>
+        <p> <strong>Editar Persona:</strong></p>
     </span>
     <section class="col-12 col-md-8 mx-auto">
     
@@ -10,7 +10,21 @@
             {% csrf_token %}
 
             {{form.as_p}}
-            {{form2.as_p}}            
+            <p>Telefono:</p><hr>
+            {{form2.management_form}}
+            {% for tel in form2.forms %}
+                {{tel.id}}  
+                <p>
+                    {{tel.sort}}
+                </p>
+                <p>
+                    {{tel.number}}
+                </p>
+                {% if tel.number.value %}    
+                    {{tel.DELETE.label_tag}} {{tel.DELETE}}
+                {% endif %}
+               
+            {% endfor %}    
             
             <button type="button" id="btnNuevoTel" class="btn btn-primary">Agregar Telefono</button>
             <span class="d-flex justify-content-center mb-5">

@@ -44,7 +44,7 @@ class TelephoneForm(forms.ModelForm):
 
         widgets = {
             'sort':forms.Select(attrs={'class':'type-number form-control', 'hidden':'true'}),
-            'number':forms.TextInput(attrs={'class':'numero-telefono form-control', 'hidden':'true', 'placeholder':'Numero Telefonico'}),
+            'number':forms.TextInput(attrs={'class':'numero-telefono form-control', 'placeholder':'Numero Telefonico', 'hidden':'true'}),
         }
 
 TelephoneFormSet = forms.inlineformset_factory(Person, Telephone, form=TelephoneForm, extra=3)

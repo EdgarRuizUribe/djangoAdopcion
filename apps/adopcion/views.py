@@ -88,6 +88,7 @@ class PersonUpdate(UpdateView):
 
     def get_context_data(self, **kwargs):
         data = super(PersonUpdate, self).get_context_data(**kwargs)
+
         if self.request.POST:
             data['form2'] = TelephoneFormSet(self.request.POST, instance=self.object)
         else:
@@ -99,7 +100,6 @@ class PersonUpdate(UpdateView):
         form2 = context['form2']
         with transaction.atomic():
             self.object = form.save()
-
             if form2.is_valid():
                 form2.instance = self.object
                 form2.save()

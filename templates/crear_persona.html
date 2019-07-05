@@ -10,9 +10,9 @@
             {% csrf_token %}
 
             {{form.as_p}}
+            <p>Telefono:</p><hr>
             {{form2.management_form}}
             {% for tel in form2 %}
-               
                 <p>
                     {{tel.sort}}
                 </p>

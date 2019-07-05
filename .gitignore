@@ -27,3 +27,5 @@ ignore/
 *.csv
 
 __pycache__
+
+consulta_join.sql
